@@ -1,20 +1,76 @@
+// Dictionary to lookup the index of alphabets
+const dict1 = {'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5,
+			'F': 6, 'G': 7, 'H': 8, 'I': 9, 'J': 10,
+			'K': 11, 'L': 12, 'M': 13, 'N': 14, 'O': 15,
+			'P': 16, 'Q': 17, 'R': 18, 'S': 19, 'T': 20,
+			'U': 21, 'V': 22, 'W': 23, 'X': 24, 'Y': 25, 'Z': 26};
 
-function rot13(str) {
-    var codeArr = [], seq, final = "";
-    for (var i = 0; i < str.length; i++) {
-        uCode = str.charCodeAt([i]);
-        if ((uCode > 64 && uCode < 78) || (uCode > 96 && uCode < 110)) {
-            uCode += 13;
-            codeArr.push(uCode);
-        } else if ((uCode > 77 && uCode < 91) || (uCode > 109 && uCode < 123)){
-            uCode -= 13;
-            codeArr.push(uCode);
-        } else { codeArr.push(uCode); }
-    }
-    console.log(codeArr);
-    for (var j = 0; j < codeArr.length; j++) {
-        final += String.fromCharCode(codeArr[j]);
-    }
-    return final;
+// Dictionary to lookup alphabets
+// corresponding to the index after shift
+const dict2 = {0: 'Z', 1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E',
+			6: 'F', 7: 'G', 8: 'H', 9: 'I', 10: 'J',
+			11: 'K', 12: 'L', 13: 'M', 14: 'N', 15: 'O',
+			16: 'P', 17: 'Q', 18: 'R', 19: 'S', 20: 'T',
+			21: 'U', 22: 'V', 23: 'W', 24: 'X', 25: 'Y'};
+
+// Function to encrypt the string
+// according to the shift provided
+function encrypt(message, shift) {
+	let cipher = '';
+	for (let i = 0; i < message.length; i++) {
+		const letter = message[i];
+		// checking for space
+		if (letter !== ' ') {
+			// looks up the dictionary and
+			// adds the shift to the index
+			const num = (dict1[letter] + shift) % 26;
+			// looks up the second dictionary for
+			// the shifted alphabets and adds them
+			cipher += dict2[num];
+		} else {
+			// adds space
+			cipher += ' ';
+		}
+	}
+	return cipher;
 }
-// Change the inputs below to test
+
+// Function to decrypt the string
+// according to the shift provided
+function decrypt(message, shift) {
+	let decipher = '';
+	for (let i = 0; i < message.length; i++) {
+		const letter = message[i];
+		// checks for space
+		if (letter !== ' ') {
+			// looks up the dictionary and
+			// subtracts the shift to the index
+			const num = (dict1[letter] - shift + 26) % 26;
+			// looks up the second dictionary for the
+			// shifted alphabets and adds them
+			decipher += dict2[num];
+		} else {
+			// adds space
+			decipher += ' ';
+		}
+	}
+	return decipher;
+}
+
+// driver function to run the program
+function main() {
+	// use 'toUpperCase()' function to convert any lowercase characters to uppercase
+	let message = "CAESAR CIPHER GAME";
+	let shift = 13;
+	let result = encrypt(message.toUpperCase(), shift);
+	console.log(result);
+
+	message = "TRRXF SBE TRRXF";
+	shift = 13;
+	result = decrypt(message.toUpperCase(), shift);
+	
+	console.log(result);
+	
+}
+main();
+
