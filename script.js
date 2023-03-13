@@ -1,19 +1,16 @@
-function rot13(str) { // LBH QVQ VG!
+function caesarsCipher(str) {
+    let encoded = '';
 
-  return str.split("").map(b => {
-        var num = 0;
-        if (b.search(/[^a-zA-Z\d\s:]/g)) {
-          
-         return String.fromCharCode((b.charCodeAt() - 65 + 13) % 26 + 65);
+    for (let i=0; i < str.length; i++) {
+    let asciiNumber = str[i].charCodeAt();
+        if (asciiNumber >= 65 && asciiNumber <= 77) {
+            encoded += String.fromCharCode(asciiNumber + 13);
+        } else if (asciiNumber >= 78 && asciiNumber <= 90) {
+            encoded += String.fromCharCode(asciiNumber - 13); 
         } else {
-          return b;
+            encoded += str[i];
         }
     }
-  ).join("");
 
-
+    return encoded;
 }
-
-
-// Change the inputs below to test
-console.log(rot13("SERR PBQR PNZC"));
