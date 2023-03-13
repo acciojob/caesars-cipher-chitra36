@@ -1,17 +1,19 @@
 function rot13(str) { // LBH QVQ VG!
 
-  str = str.toUpperCase();
-  var n = 0;
-  var l = "";
-  var str2 = "";
-
-  for (x = 0; x < str.length; x++) {
-    n = str.charCodeAt(x);
-    if (isCapLetter(n)) {
-      n = range(n + 13, 65, 90);
+  return str.split("").map(b => {
+        var num = 0;
+        if (b.search(/[^a-zA-Z\d\s:]/g)) {
+          
+         return String.fromCharCode((b.charCodeAt() - 65 + 13) % 26 + 65);
+        } else {
+          return b;
+        }
     }
-    l = String.fromCharCode(n);
-    str2 += l;
-  }
-  return str2;
+  ).join("");
+
+
 }
+
+
+// Change the inputs below to test
+console.log(rot13("SERR PBQR PNZC"));
