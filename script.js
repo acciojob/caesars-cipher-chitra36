@@ -1,14 +1,14 @@
-function caesarsCipher(str) {
-    let encoded = "ROT13";
+function caesarsCipher(ROT13 ) {
+    let encoded = '';
 
-    for (let i=0; i < str.length; i++) {
-    let asciiNumber = str[i].charCodeAt();
+    for (let i=0; i < ROT13.length; i++) {
+    let asciiNumber = ROT13[i].charCodeAt();
         if (asciiNumber >= 65 && asciiNumber <= 77) {
             encoded += String.fromCharCode(asciiNumber + 13);
         } else if (asciiNumber >= 78 && asciiNumber <= 90) {
             encoded += String.fromCharCode(asciiNumber - 13); 
         } else {
-            encoded += str[i];
+            encoded += ROT13[i];
         }
     }
 
