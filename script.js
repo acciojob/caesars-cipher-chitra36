@@ -18,4 +18,3 @@ function rot13(str) {
     return final;
 }
 // Change the inputs below to test
-rot13("SERR CVMMN!");
