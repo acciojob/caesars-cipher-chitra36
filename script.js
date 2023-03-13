@@ -1,5 +1,5 @@
 function caesarsCipher(str) {
-    let encoded = '';
+    let encoded = "ROT13";
 
     for (let i=0; i < str.length; i++) {
     let asciiNumber = str[i].charCodeAt();
