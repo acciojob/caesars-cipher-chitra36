@@ -1,28 +1,14 @@
-	function encrypt(text, s)
-	{
-		let result=""
-		for (let i = 0; i < text.length; i++)
-		{
-			let char = text[i];
-			if (char.toUpperCase(text[i]))
-			{
-				let ch = String.fromCharCode((char.charCodeAt(0) + s-65) % 26 + 65);
-				result += ch;
-			}
-			else
-			{
-				let ch = String.fromCharCode((char.charCodeAt(0) + s-97) % 26 + 97);
-				result += ch;
-			}
-		}
-		return result;
-	}
-	
-	// Driver code
-	let text = "ATTACKATONCE";
-	let s = 4;
-	document.write("Text : " + text + "<br>");
-	document.write("Shift : " + s + "<br>");
-	document.write("Cipher: " + encrypt(text, s) + "<br>");
-	
-	// This code is contributed by 
+function cipherRot13(str) {
+  str = str.toUpperCase();
+  return str.replace(/[A-Z]/g, rot13);
+
+  function rot13(correspondance) {
+    const charCode = correspondance.charCodeAt();
+    //A = 65, Z = 90
+    return String.fromCharCode(
+            ((charCode + 13) <= 90) ? charCode + 13
+                                    : (charCode + 13) % 90 + 64
+           );
+    
+  }
+}
